@@ -1,5 +1,5 @@
 # importing flask
-from flask import Flask
+from flask import Flask, render_template, request
 
 
 
@@ -9,4 +9,5 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Hello World"
+    # the second argumant will be the default name of the function
+    return render_template("index.html", name=request.args.get("name", "world"))
