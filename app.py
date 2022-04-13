@@ -11,3 +11,9 @@ app = Flask(__name__)
 def index():
     # the second argumant will be the default name of the function
     return render_template("index.html", name=request.args.get("name", "world"))
+
+
+@app.route("/greet")
+def greet():
+    # the second argumant will be the default name of the function
+  return render_template("greet.html", name=request.args.get("name", "world"))
