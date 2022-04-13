@@ -7,13 +7,11 @@ from flask import Flask, render_template, request
 # like the main method
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def index():
-    # the second argumant will be the default name of the function
-    return render_template("index.html", name=request.args.get("name", "world"))
+    if request.method == "GET":
+        return render_template("index.html")
+    if request.method == "POST":
+        return render_template("greet.html", name=request.form.get("name", "world"))
 
 
-@app.route("/greet", methods=["POST"])
-def greet():
-    # changing the argument to request.post
-  return render_template("greet.html", name=request.form.get("name", "world"))
