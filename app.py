@@ -3,15 +3,18 @@ from flask import Flask, render_template, request
 
 
 
-# this current file will be an application 
-# like the main method
 app = Flask(__name__)
 
-@app.route("/", methods=["POST", "GET"])
+
+
+@app.route("/")
 def index():
-    if request.method == "GET":
-        return render_template("index.html")
-    if request.method == "POST":
-        return render_template("greet.html", name=request.form.get("name", "world"))
+    return render_template("index.html")
 
 
+@app.route("/register", methods=["POST"])
+def register():
+    # checking for the name
+    if not request.form.get("name") or not request.form.get("sport"):
+        return render_template("failure.html")
+    return render_template("register.html")
