@@ -12,6 +12,9 @@ SPORTS = [
     "Basketball"
 ]
 
+REGISTRANTS = {
+
+}
 
 @app.route("/")
 def index():
@@ -20,7 +23,15 @@ def index():
 
 @app.route("/register", methods=["POST"])
 def register():
-    # checking for the name
-    if not request.form.get("name") or request.form.get("sport") not in SPORTS:
-        return render_template("failure.html")
-    return render_template("register.html")
+    name = request.form.get("name")
+    if not name:
+        return render_template("error.html", message="Missing name")
+    sport = request.form.get("sport") 
+
+    if not sport:
+        return render_template("error.html", message = "Missing Sport" )
+    if sport not in SPORTS:
+        return render_template("error.html")
+
+    REGISTRANTS[name] = sport
+    return render_template("register.html", registrants= REGISTRANTS)

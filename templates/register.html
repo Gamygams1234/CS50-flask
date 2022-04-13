@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
 
-
-You are registered
+{% for key, value in registrants.items() %}
+<h1>{{key}}</h1>
+<h2>{{value}}</h2>
+{% endfor %}
 
 {% endblock %}
