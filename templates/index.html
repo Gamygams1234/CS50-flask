@@ -1,17 +1,14 @@
 {% extends "layout.html" %}
 {% block body %}
-<h1>Registration</h1>
-<form action="/register" method="POST">
-  <input type="text" autofocus placeholder="Your name here" name="name" />
+
+{% if session.name %}
+<h1>You are logged in as {{ session.name }}.</h1>
+<!-- <a href="/login">Log in</a> -->
+{% else %}
+<h1>You are not logged in</h1>
+<a href="/login">Log in</a>
+{% endif %}
 
 
 
-    
-      {% for sport in sports %}
-        <input name = "sport" type = "radio" value="{{sport}}">{{sport}}</input>
-      {% endfor %}
-
-
-  <button type="submit">Submit</button>
-</form>
 {% endblock %}
